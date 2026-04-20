@@ -83,14 +83,12 @@ Pillow
 # Input: /kaggle/input/competitions/fptu-can-tho-olympic-ai-2026/train
 # Output: /kaggle/working/dataset_split
 ```
-- ⏱️ Thời gian: ~2-3 phút
 - ✅ Kết quả: Thư mục `train/` và `val/`
 
 **Cell 2️⃣ : Hiển Thị Sample Images**
 ```python
 # Preview 8 hình ảnh mẫu từ các class khác nhau
 ```
-- ⏱️ Thời gian: ~10 giây
 
 **Cell 3️⃣ : Custom Augmentation Classes**
 ```python
@@ -102,7 +100,6 @@ Pillow
 # - RandomChromaticAberration
 # - v.v.
 ```
-- ⏱️ Thời gian: Không chạy, chỉ định nghĩa
 
 **Cell 4️⃣ : Setup Model & Training**
 ```python
@@ -116,13 +113,11 @@ Pillow
 ```python
 # Hiển thị 8 phiên bản augmented của 1 ảnh
 ```
-- ⏱️ Thời gian: ~5 giây
 
 **Cell 6️⃣ : Model Summary**
 ```python
 # In thông tin model + class weights
 ```
-- ⏱️ Thời gian: ~2 giây
 
 **Cell 7️⃣ : TRAINING 🔥 (TÙY CHỌN)**
 ```
@@ -132,7 +127,6 @@ Pillow
 
 Nếu muốn train từ đầu:
 - Chạy cell này
-- ⏱️ Thời gian: ~2-4 giờ (tùy GPU)
 - Kết quả: best_efficientnet_rice_f1.pth
 ```
 
@@ -143,7 +137,6 @@ Nếu muốn train từ đầu:
 # 2. Accuracy (Training vs Validation)
 # 3. F1-macro Score
 ```
-- ⏱️ Thời gian: ~5 giây
 
 **Cell 9️⃣ : Confusion Matrix + ROC Curves**
 ```python
@@ -151,7 +144,6 @@ Nếu muốn train từ đầu:
 # - ROC Curves (Multi-class)
 # - Final Metrics (F1, Accuracy, ROC AUC)
 ```
-- ⏱️ Thời gian: ~10 giây
 
 **Cell 🔟 : INFERENCE (Dự Đoán Test Set)**
 ```python
@@ -159,7 +151,6 @@ Nếu muốn train từ đầu:
 # Input: /kaggle/input/competitions/fptu-can-tho-olympic-ai-2026/test_speedup
 # Output: /kaggle/working/my_submission.csv
 ```
-- ⏱️ Thời gian: ~30 giây - 2 phút
 - ✅ Kết Quả: `my_submission.csv`
 
 **Cell 1️⃣1️⃣ : Phân Tích Kết Quả Prediction**
@@ -167,7 +158,6 @@ Nếu muốn train từ đầu:
 # Vẽ biểu đồ phân bố prediction trên test set
 # In thống kê số lượng hình ảnh theo class
 ```
-- ⏱️ Thời gian: ~5 giây
 
 #### Bước 4: Submit Kết Quả
 1. Sau khi cell 10 chạy xong → File `my_submission.csv` được tạo
@@ -195,9 +185,9 @@ split_ratio = 0.8  # 80% train, 20% validation
 ```
 dataset_split/
 ├── train/
-│   ├── Bacterial Leaf Blight/     (100+ ảnh)
-│   ├── Brown Spot/                (100+ ảnh)
-│   ├── Healthy Rice Leaf/         (100+ ảnh)
+│   ├── Bacterial Leaf Blight/    
+│   ├── Brown Spot/              
+│   ├── Healthy Rice Leaf/       
 │   └── ... (8 class tổng cộng)
 └── val/
     └── (cùng cấu trúc)
