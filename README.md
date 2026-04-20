@@ -467,31 +467,11 @@ model_path = "models/best_efficientnet_rice_f1.pth"
 
 ## 📚 Tài Liệu Tham Khảo
 
-- **EfficientNet:** [Paper](https://arxiv.org/abs/1905.11946)
-- **TIMM Library:** [GitHub](https://github.com/rwightman/pytorch-image-models)
 - **Kaggle Competition:** [Olympic AI 2026](https://www.kaggle.com/competitions/fptu-can-tho-olympic-ai-2026)
 
 ---
-
-## ✅ Checklist Trước Submit
-
-- [ ] Chạy hết tất cả Cell theo thứ tự
-- [ ] File `my_submission.csv` được tạo
-- [ ] CSV có đúng 2 column: `image_id`, `label`
-- [ ] Không có missing values trong CSV
-- [ ] Tất cả label nằm trong [0, 7]
-- [ ] Số dòng = số ảnh trong test set
-- [ ] Download file CSV từ Output
-- [ ] Upload lên Kaggle submission tab
-
----
-
 ## 🎉 Hoàn Thành!
-
-Chúc bạn thành công với cuộc thi **Olympic AI 2026**! 🚀
 
 **Happy Coding!** 💻
 
 ---
-
-*Cập nhật lần cuối: Tháng 4, 2026*
