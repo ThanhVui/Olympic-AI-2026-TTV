@@ -119,13 +119,8 @@ Pillow
 # In thông tin model + class weights
 ```
 
-**Cell 7️⃣ : TRAINING 🔥 (TÙY CHỌN)**
+**Cell 7️⃣ : TRAINING 🔥**
 ```
-⚠️ QUAN TRỌNG: Nếu đã có best_efficientnet_rice_f1.pth
-→ BỎ QUA cell này hoặc comment lại
-→ Model sẽ được load từ file có sẵn
-
-Nếu muốn train từ đầu:
 - Chạy cell này
 - Kết quả: best_efficientnet_rice_f1.pth
 ```
@@ -234,8 +229,8 @@ model = timm.create_model(
 ```
 
 **Thông Số Model:**
-- Tổng parameters: ~9.2M
-- Trainable parameters: ~9.2M
+- Tổng parameters: ~7.71 M
+- Trainable parameters: ~7.71 M
 - Input size: 288×288 pixels
 - Output: 8 classes (softmax)
 
@@ -327,9 +322,9 @@ Mô hình phân loại 8 loại bệnh trên lá lúa:
 ### Metric Cuối Cùng (Trên Validation Set)
 
 ```
-✅ F1-macro Score: 0.92-0.95 (tùy run)
-✅ Accuracy: 0.90-0.93
-✅ ROC AUC: 0.98+
+✅ F1-macro Score: 0.9512
+✅ Accuracy: 0.9583
+✅ ROC AUC: 0.9920
 ```
 
 ### Confusion Matrix
@@ -339,119 +334,6 @@ Mô hình phân loại 8 loại bệnh trên lá lúa:
 ### ROC Curves
 - Tất cả class đều có AUC > 0.95
 - Model không có overfitting đáng kể
-
----
-
-## ⚠️ Các Lưu Ý Quan Trọng
-
-### 1. GPU Memory Issues
-Nếu gặp lỗi `CUDA out of memory`:
-```python
-# Giảm batch size từ 8 → 4
-batch_size = 4
-
-# Hoặc giảm img_size từ 288 → 224
-img_size = 224
-```
-
-### 2. Không Có Model Đã Train
-Nếu `best_efficientnet_rice_f1.pth` không tồn tại:
-- Phải chạy Cell 7 (Training)
-- ⏱️ Mất **2-4 giờ** tùy GPU
-
-### 3. Nếu Muốn Fine-tune Model
-```python
-# Thay đổi learning rate và số epoch
-lr = 1e-4  # Nhỏ hơn (fine-tune)
-epochs = 30
-```
-
-### 4. Reproducibility
-- `random.seed(42)` được set ở Cell 1
-- PyTorch deterministic không được bật → kết quả có thể chênh lệch nhẹ
-
-### 5. Chạy Offline (Máy Cá Nhân)
-
-**Cấu trúc thư mục cần:**
-```
-working_dir/
-├── dataset_split/
-│   ├── train/
-│   └── val/
-├── test_speedup/
-│   ├── test_001.jpg
-│   └── ...
-└── models/
-    └── best_efficientnet_rice_f1.pth
-```
-
-**Thay đổi path:**
-```python
-# Cell 4 & Cell 10
-input_dir = "path/to/train"
-test_dir = "path/to/test_speedup"
-model_path = "models/best_efficientnet_rice_f1.pth"
-```
-
----
-
-## 📞 Troubleshooting
-
-| Lỗi | Nguyên Nhân | Giải Pháp |
-|-----|-----------|----------|
-| `ModuleNotFoundError: No module named 'timm'` | Chưa cài timm | `pip install timm` |
-| `CUDA out of memory` | GPU RAM không đủ | Giảm batch_size hoặc img_size |
-| `FileNotFoundError: best_model.pth` | Model không tìm thấy | Chạy training hoặc check path |
-| `AssertionError: Input and output types...` | Data type mismatch | Kiểm tra dtype tensor |
-| Kết quả khác submission.csv cũ | Augmentation ngẫu nhiên | Bình thường, nên kết quả gần giống |
-
----
-
-## 🎯 Tóm Tắt Quy Trình
-
-```
-┌─────────────────────────┐
-│ 1. Chạy Cell 1: Split   │ → Chuẩn bị data
-│    Data (2-3 min)       │
-└──────────────┬──────────┘
-               ↓
-┌─────────────────────────┐
-│ 2. Chạy Cell 2-6:       │ → Setup model,
-│    Prep & Visualize     │   augmentation
-│    (30 sec)             │
-└──────────────┬──────────┘
-               ↓
-       ┌───────────────┐
-       │ Có best model?│
-       └───┬───────┬───┘
-           │ Không │
-      ┌────▼──┐    │
-      │Chạy   │    │Có
-      │Cell 7 │    │
-      │Train  │    │ ↓
-      │(2-4h) │    │ (Bỏ qua)
-      └────┬──┘    │
-           │   ┌───┴──────┐
-           └───▶ 3. Cell 8-9: │ → Hiển thị kết quả
-               │ Plot Results │   training
-               │ (15 sec)     │
-               └──────┬──────┘
-                      ↓
-           ┌──────────────────────┐
-           │ 4. Cell 10: Inference│ → Dự đoán test set
-           │ (30 sec - 2 min)     │
-           └──────────┬───────────┘
-                      ↓
-           ┌──────────────────────┐
-           │ 5. Cell 11: Visualize│ → Xem phân bố
-           │ Results (5 sec)      │
-           └──────────┬───────────┘
-                      ↓
-           ┌──────────────────────┐
-           │ 6. Download CSV &    │ → Upload lên
-           │ Submit to Kaggle     │   Kaggle
-           └──────────────────────┘
-```
 
 ---
 
